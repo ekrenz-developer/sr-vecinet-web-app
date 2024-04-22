@@ -1,8 +1,7 @@
 export interface PostResponseInterface {
-  id: number;
+  id: string;
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date | undefined;
   latitude: number;
   longitude: number;
   content: string;

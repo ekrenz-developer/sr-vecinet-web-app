@@ -1,13 +1,12 @@
-<div class="flex flex-row w-full p-4 border-b">
-	<div class="flex flex-row w-full">
-		<app-avatar />
-    <div class="flex flex-col w-full">
-      <div>
-        <p>Erik Krenz - 8h</p>
-      </div>
-      <div>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, eum a! Exercitationem hic nam autem at porro, rerum magnam quidem reiciendis doloribus eum in ratione assumenda accusamus impedit iure quis.</p>
-      </div>
+<div class="flex flex-row items-start space-x-4 p-4 border-b border-gray-200 bg-white">
+  <app-avatar [username]="post.username"></app-avatar>
+  <div class="flex flex-col w-full">
+    <div class="flex items-center text-sm">
+      <p class="font-bold text-black mr-2">{{ post.username }}</p>
+      <p class="text-gray-500">{{ timeSinceCreated }}</p>
     </div>
-	</div>
+    <div>
+      <p class="text-black mt-1">{{ post.content }}</p>
+    </div>
+  </div>
 </div>
