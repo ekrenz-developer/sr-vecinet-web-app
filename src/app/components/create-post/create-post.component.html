@@ -1,0 +1,22 @@
+<div [@slideIn]="showCreatePost ? 'shown' : 'hidden'" class="fixed inset-0 bg-black bg-opacity-50 z-40 flex items-start">
+  <div
+    class="h-full w-full p-4 bg-black text-white transform transition-transform"
+  >
+
+    <!-- Botones de Cancelar y Publicar en la parte superior -->
+    <div class="flex justify-between items-center pb-2">
+      <button class="text-blue-500" (click)="handleCancel()">Cancel</button>
+      <button class="bg-blue-500 py-1 px-3 rounded-full" (click)="handlePost()">Post</button>
+    </div>
+
+    <!-- Área de texto para crear un post -->
+    <div class="flex items-center pt-2 space-x-4">
+      <app-avatar [username]="'E'"></app-avatar>
+      <input
+        type="text"
+        placeholder="What's happening?"
+        class="w-full bg-transparent border-none placeholder-gray-400 focus:outline-none"
+      />
+    </div>
+  </div>
+</div>
