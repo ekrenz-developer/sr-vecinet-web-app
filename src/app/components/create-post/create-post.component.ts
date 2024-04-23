@@ -16,7 +16,7 @@ import { AvatarComponent } from '../avatar/avatar.component';
       state('shown', style({
         transform: 'translateY(0)'
       })),
-      transition('hidden <=> shown', animate('300ms ease-in-out'))
+      transition('hidden <=> shown', animate('150ms ease-in-out'))
     ])
   ]
 })
