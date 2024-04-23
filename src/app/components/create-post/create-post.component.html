@@ -10,13 +10,14 @@
     </div>
 
     <!-- Área de texto para crear un post -->
-    <div class="flex items-center pt-2 space-x-4">
+    <div class="flex pt-2 space-x-4">
       <app-avatar [username]="'E'"></app-avatar>
-      <input
-        type="text"
+      <textarea
+        rows="1"
         placeholder="What's happening?"
-        class="w-full bg-transparent border-none placeholder-gray-400 focus:outline-none"
-      />
+        class="w-full bg-transparent border-none placeholder-gray-400 focus:outline-none resize-none overflow-hidden"
+        (input)="adjustTextArea($event)"
+      ></textarea>
     </div>
   </div>
 </div>

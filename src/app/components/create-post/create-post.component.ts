@@ -32,4 +32,10 @@ export class CreatePostComponent {
   handleCancel(): void {
     this.toggleCancel.emit();
   }
+
+  adjustTextArea(event: Event): void {
+    const textArea = event.target as HTMLTextAreaElement; // Cast target to HTMLTextAreaElement
+    textArea.style.height = 'auto'; // Reset the height to get the scrollHeight correctly
+    textArea.style.height = `${textArea.scrollHeight}px`; // Set the height to the scrollHeight
+  }
 }

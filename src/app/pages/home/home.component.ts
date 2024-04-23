@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HeaderComponent } from '@/components/header/header.component';
-import { PostFormComponent } from '@/components/post-form/post-form.component';
 import { PostComponent } from '@/components/post/post.component';
 import { FabButtonComponent } from '@/components/fab-button/fab-button.component';
 import { CreatePostComponent } from '@/components/create-post/create-post.component';
@@ -11,7 +10,7 @@ import { PostInputInterface } from '@/components/post/post-input.interface';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, PostFormComponent, PostComponent, FabButtonComponent, CreatePostComponent],
+  imports: [HeaderComponent, PostComponent, FabButtonComponent, CreatePostComponent],
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {

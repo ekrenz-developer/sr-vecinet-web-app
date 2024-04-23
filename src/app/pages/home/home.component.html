@@ -1,5 +1,4 @@
 <app-header />
-<!-- <app-post-form /> -->
 <app-create-post (togglePost)="togglePost()" (toggleCancel)="toggleCancelPost()" [showCreatePost]="showCreatePost"></app-create-post>
 @for (post of postList; track post.id) {
   <app-post [post]="post"></app-post>
