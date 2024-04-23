@@ -4,12 +4,13 @@ import { HeaderComponent } from '@/components/header/header.component';
 import { PostComponent } from '@/components/post/post.component';
 import { FabButtonComponent } from '@/components/fab-button/fab-button.component';
 import { CreatePostComponent } from '@/components/create-post/create-post.component';
+import { LoaderComponent } from '@/components/loader/loader.component';
 import { PostStore } from '@/stores/post.store';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, PostComponent, FabButtonComponent, CreatePostComponent],
+  imports: [HeaderComponent, PostComponent, FabButtonComponent, CreatePostComponent, LoaderComponent],
   templateUrl: './home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

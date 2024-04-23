@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, delay, of } from 'rxjs';
 
 import { PageInterface } from '@/interfaces/page.interface';
 import { PostResponseInterface } from '@/interfaces/post-response.interface';
@@ -166,6 +166,8 @@ export class PostService {
       metadada: mockPageMetadata
     };
 
-    return of(mockPage);
+    return of(mockPage).pipe(
+      delay(2000)
+    );
   }
 }
