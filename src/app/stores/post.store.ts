@@ -36,8 +36,9 @@ export const PostStore = signalStore(
                 createdAt: post.createdAt,
                 content: post.content,
                 username: post.username
-              })), loading: false, error: null }),
-              error: (error: string) => patchState(store, { loading: false, error })
+              }))}),
+              error: (error: string) => patchState(store, { error }),
+              finalize: () => patchState(store, { loading: false }),
             })
           )
         ),
