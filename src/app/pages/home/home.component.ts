@@ -1,38 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { HeaderComponent } from '@/components/header/header.component';
 import { PostComponent } from '@/components/post/post.component';
 import { FabButtonComponent } from '@/components/fab-button/fab-button.component';
 import { CreatePostComponent } from '@/components/create-post/create-post.component';
-import { PostService } from '@/services/post.service';
-import { PostInputInterface } from '@/components/post/post-input.interface';
+import { PostStore } from '@/stores/post.store';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [HeaderComponent, PostComponent, FabButtonComponent, CreatePostComponent],
   templateUrl: './home.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  postList: PostInputInterface[] = [];
+  postStore = inject(PostStore);
+
   showCreatePost: boolean = false;
 
-  constructor(private postService: PostService) {}
-
   ngOnInit(): void {
-    this.postService.search().subscribe({
-      next: (page) => {
-        this.postList = page.content.map(post => ({
-          id: post.id,
-          createdAt: post.createdAt,
-          content: post.content,
-          username: post.username
-        }));
-      },
-      error: (error) => {
-        console.error('Failed to load posts:', error);
-      }
-    });
+    this.postStore.search();
   }
 
   toggleCreatePost() {

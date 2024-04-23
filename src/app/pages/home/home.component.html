@@ -1,6 +1,6 @@
 <app-header />
 <app-create-post (togglePost)="togglePost()" (toggleCancel)="toggleCancelPost()" [showCreatePost]="showCreatePost"></app-create-post>
-@for (post of postList; track post.id) {
+@for (post of postStore.postList(); track post.id) {
   <app-post [post]="post"></app-post>
 }
 <div class="fixed bottom-4 right-4 z-10">
