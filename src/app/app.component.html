@@ -1,5 +1,9 @@
 <!-- <div class="flex justify-center min-h-screen bg-gray-100">
   <div class="w-full max-w-sm bg-white shadow-lg rounded-lg"> -->
-    <router-outlet></router-outlet>
-  <!-- </div>
-</div> -->
+    <!-- </div>
+    </div> -->
+@if (showSplash) {
+  <app-splash-screen></app-splash-screen>
+} @else {
+  <router-outlet></router-outlet>
+}
