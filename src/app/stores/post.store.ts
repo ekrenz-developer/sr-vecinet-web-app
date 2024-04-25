@@ -9,6 +9,7 @@ import { PostService } from '@/services/post.service';
 import { PageInterface } from '@/interfaces/page.interface';
 import { PostInputInterface } from '@/components/post/post-input.interface';
 import { SearchPostQueryParamsInterface } from '@/interfaces/search-post-query-params.interface';
+import { CreatePostBodyInterface } from '@/interfaces/create-post-body.interface';
 
 interface PostState {
   postList: PostInputInterface[];
@@ -41,6 +42,31 @@ export const PostStore = signalStore(
                     username: post.username,
                   })),
                 }),
+              error: (error: string) => patchState(store, { error }),
+              finalize: () => patchState(store, { loading: false }),
+            }),
+          ),
+        ),
+      ),
+    ),
+    create: rxMethod<CreatePostBodyInterface>(
+      pipe(
+        tap(() => patchState(store, { loading: true })),
+        switchMap((body: CreatePostBodyInterface) =>
+          postService.create(body).pipe(
+            tapResponse({
+              next: (response: PostResponseInterface) =>
+                patchState(store, (state) => ({
+                  postList: [
+                    ...state.postList,
+                    {
+                      id: response.id,
+                      createdAt: response.createdAt,
+                      content: response.content,
+                      username: response.username,
+                    },
+                  ],
+                })),
               error: (error: string) => patchState(store, { error }),
               finalize: () => patchState(store, { loading: false }),
             }),

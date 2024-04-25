@@ -25,7 +25,7 @@
   ></app-fab-button>
 </div>
 <app-create-post
-  (togglePost)="togglePost()"
+  (togglePost)="togglePost($event)"
   (toggleCancel)="toggleCancelPost()"
   [showCreatePost]="showCreatePost"
 ></app-create-post>
