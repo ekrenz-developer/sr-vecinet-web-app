@@ -13,10 +13,9 @@ import { trigger, transition, style, animate } from '@angular/animations';
       ]),
       transition(':leave', [
         style({ opacity: 1, transform: 'scale(1)' }), // Estado inicial normal
-        animate('500ms ease-in', style({ opacity: 0, transform: 'scale(4)' })) // Se agranda y desvanece
+        animate('500ms ease-in', style({ opacity: 0, transform: 'scale(4)' })), // Se agranda y desvanece
       ]),
-    ])
-  ]
+    ]),
+  ],
 })
-export class SplashScreenComponent {
-}
+export class SplashScreenComponent {}

@@ -11,15 +11,18 @@ import { trigger, style, transition, animate } from '@angular/animations';
       transition(':enter', [
         style({
           transform: 'translate(-50%, -50%) scale(0)',
-          opacity: 0
+          opacity: 0,
         }),
-        animate('500ms ease-in-out', style({
-          transform: 'translate(0, 0) scale(1)',
-          opacity: 1
-        }))
-      ])
-    ])
-  ]
+        animate(
+          '500ms ease-in-out',
+          style({
+            transform: 'translate(0, 0) scale(1)',
+            opacity: 1,
+          }),
+        ),
+      ]),
+    ]),
+  ],
 })
 export class FabButtonComponent {
   @Input() loading = true;

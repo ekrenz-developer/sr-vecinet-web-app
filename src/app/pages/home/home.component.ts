@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 
 import { HeaderComponent } from '@/components/header/header.component';
 import { PostComponent } from '@/components/post/post.component';
@@ -11,7 +16,14 @@ import { PostStore } from '@/stores/post.store';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, PostComponent, FabButtonComponent, CreatePostComponent, LoaderComponent, PostSkeletonComponent],
+  imports: [
+    HeaderComponent,
+    PostComponent,
+    FabButtonComponent,
+    CreatePostComponent,
+    LoaderComponent,
+    PostSkeletonComponent,
+  ],
   templateUrl: './home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

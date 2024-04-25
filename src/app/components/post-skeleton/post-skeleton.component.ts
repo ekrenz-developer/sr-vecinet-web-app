@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './post-skeleton.component.html',
 })
-export class PostSkeletonComponent {
-
-}
+export class PostSkeletonComponent {}

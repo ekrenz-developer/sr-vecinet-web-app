@@ -1,14 +1,11 @@
-const { EnvironmentPlugin } = require('webpack');
+import { EnvironmentPlugin } from 'webpack';
+import * as dotenv from 'dotenv';
 
-require('dotenv').config();
+dotenv.config();
 
 module.exports = {
   output: {
-    crossOriginLoading: 'anonymous'
+    crossOriginLoading: 'anonymous',
   },
-  plugins: [
-    new EnvironmentPlugin([
-      'TOKEN'
-    ])
-  ]
-}
+  plugins: [new EnvironmentPlugin(['VECINET_SERVICE_BASE_URL'])],
+};

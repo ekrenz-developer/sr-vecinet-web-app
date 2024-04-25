@@ -10,16 +10,16 @@ import { PageInterface } from '@/interfaces/page.interface';
 import { PostInputInterface } from '@/components/post/post-input.interface';
 
 interface PostState {
-  postList: PostInputInterface[]
-  loading: boolean
-  error: string | null
+  postList: PostInputInterface[];
+  loading: boolean;
+  error: string | null;
 }
 
 const initialState: PostState = {
   postList: [],
   loading: false,
-  error: null
-}
+  error: null,
+};
 
 export const PostStore = signalStore(
   { providedIn: 'root' },
@@ -28,21 +28,24 @@ export const PostStore = signalStore(
     search: rxMethod<void>(
       pipe(
         tap(() => patchState(store, { loading: true })),
-        switchMap(() => postService.search()
-          .pipe(
+        switchMap(() =>
+          postService.search().pipe(
             tapResponse({
-              next: (response: PageInterface<PostResponseInterface>) => patchState(store, { postList: response.content.map(post => ({
-                id: post.id,
-                createdAt: post.createdAt,
-                content: post.content,
-                username: post.username
-              }))}),
+              next: (response: PageInterface<PostResponseInterface>) =>
+                patchState(store, {
+                  postList: response.content.map((post) => ({
+                    id: post.id,
+                    createdAt: post.createdAt,
+                    content: post.content,
+                    username: post.username,
+                  })),
+                }),
               error: (error: string) => patchState(store, { error }),
               finalize: () => patchState(store, { loading: false }),
-            })
-          )
+            }),
+          ),
         ),
-      )
+      ),
     ),
-  }))
-)
+  })),
+);

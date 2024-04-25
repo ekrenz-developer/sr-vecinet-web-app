@@ -15,7 +15,12 @@ export class PostComponent {
   timeSinceCreated: string;
 
   constructor() {
-    this.post = { id: '', username: '', content: '', createdAt: new Date('1900-01-01 00:00:00') };
+    this.post = {
+      id: '',
+      username: '',
+      content: '',
+      createdAt: new Date('1900-01-01 00:00:00'),
+    };
     this.timeSinceCreated = '';
   }
 
@@ -26,7 +31,9 @@ export class PostComponent {
   calculateTimeSinceCreated(): void {
     const now = new Date();
     const postDate = new Date(this.post.createdAt);
-    const diffInSeconds = Math.floor((now.getTime() - postDate.getTime()) / 1000);
+    const diffInSeconds = Math.floor(
+      (now.getTime() - postDate.getTime()) / 1000,
+    );
 
     if (diffInSeconds < 60) {
       this.timeSinceCreated = `${diffInSeconds}s`;

@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './loader.component.html',
 })
-export class LoaderComponent {
-
-}
+export class LoaderComponent {}

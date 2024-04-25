@@ -1,3 +1,3 @@
 export const environment = {
-  token: process.env["TOKEN"]
+  vecinetServiceBaseUrl: process.env['VECINET_SERVICE_BASE_URL'],
 };

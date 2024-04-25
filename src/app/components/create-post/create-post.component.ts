@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 
 import { AvatarComponent } from '../avatar/avatar.component';
 
@@ -10,15 +16,21 @@ import { AvatarComponent } from '../avatar/avatar.component';
   templateUrl: './create-post.component.html',
   animations: [
     trigger('slideIn', [
-      state('hidden', style({
-        transform: 'translateY(100%)'
-      })),
-      state('shown', style({
-        transform: 'translateY(0)'
-      })),
-      transition('hidden <=> shown', animate('150ms ease-in-out'))
-    ])
-  ]
+      state(
+        'hidden',
+        style({
+          transform: 'translateY(100%)',
+        }),
+      ),
+      state(
+        'shown',
+        style({
+          transform: 'translateY(0)',
+        }),
+      ),
+      transition('hidden <=> shown', animate('150ms ease-in-out')),
+    ]),
+  ],
 })
 export class CreatePostComponent {
   @Input() showCreatePost: boolean = false;
