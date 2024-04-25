@@ -6,6 +6,7 @@ import { LoaderComponent } from '@/components/loader/loader.component';
 import { AuthService } from '@/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router'; 
+import { GeolocationService } from '@/services/geolocation.service';
 
 
 @Component({
@@ -18,12 +19,21 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   authService = inject(AuthService);
   router = inject(Router); 
+  geoService = inject(GeolocationService);
+  location: GeolocationPosition | null = null;
 
   username: string = '';
 
 
   ngOnInit(): void {
-    console.log('LoginComponent initialized');
+    this.geoService.getCurrentLocation()
+      .then(position => {
+        this.location = position;
+        console.log('Got location', position);
+      })
+      .catch(error => {
+        console.error('Error getting location', error);
+      });
   }
   
 
