@@ -1,15 +1,15 @@
 <div
   [@slideIn]="showCreatePost ? 'shown' : 'hidden'"
   (@slideIn.done)="onAnimationDone()"
-  class="fixed inset-0 bg-black bg-opacity-50 z-40 flex items-start"
+  class="fixed inset-0 bg-gray-100 bg-opacity-95 z-40 flex items-start"
 >
   <div
-    class="h-full w-full p-4 bg-black text-white transform transition-transform"
+    class="h-full w-full p-4 bg-white text-black transform transition-transform"
   >
     <!-- Botones de Cancelar y Publicar en la parte superior -->
     <div class="flex justify-between items-center pb-2">
-      <button class="text-blue-500 hover:text-blue-300" (click)="handleCancel()">Cancel</button>
-      <button class="bg-blue-500 hover:bg-blue-300 py-1 px-3 rounded-full text-white disabled:bg-blue-400 disabled:text-gray-300" (click)="handlePost()" [disabled]="!isThereContent">
+      <button class="text-blue-600 hover:text-blue-400" (click)="handleCancel()">Cancel</button>
+      <button class="bg-blue-600 hover:bg-blue-400 py-1 px-3 rounded-full text-white disabled:bg-blue-200 disabled:text-gray-400" (click)="handlePost()" [disabled]="!isThereContent">
         Post
       </button>
     </div>
@@ -21,7 +21,7 @@
         #textarea
         rows="1"
         placeholder="What's happening?"
-        class="w-full bg-transparent border-none placeholder-gray-400 focus:outline-none resize-none overflow-hidden"
+        class="w-full bg-transparent border-none placeholder-gray-400 focus:outline-none resize-none overflow-hidden caret-blue-500"
         (input)="adjustTextArea($event)"
         [(ngModel)]="content"
       ></textarea>
