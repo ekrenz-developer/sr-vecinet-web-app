@@ -3,12 +3,14 @@
     <h1 class="text-3xl font-bold mb-8">Sign in to Vecinet</h1>
 
     <div class="mb-6">
-      <input type="text" placeholder="Username" class="w-full p-3 border border-gray-300 focus:border-blue-500 rounded-lg focus:ring-0 focus:outline-none" [(ngModel)]="username">
+      <input #input type="text" placeholder="Username" class="w-full p-3 border border-gray-300 focus:border-blue-500 rounded-lg focus:ring-0 focus:outline-none" [(ngModel)]="username">
     </div>
 
     <button class="w-full bg-blue-500 hover:bg-blue-400 text-white py-3 rounded-full mb-4 focus:outline-none disabled:bg-blue-300"
       (click)="handleLogin()"
-      [disabled]="!isThereUsername"
-    >Next</button>
+      [disabled]="!isThereUsername || authStore.loading()"
+    >
+      <span class="text-white">Next</span>
+    </button>
   </div>
 </div>

@@ -24,7 +24,7 @@ export const AuthStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withMethods((store, authService = inject(AuthService)) => ({
-    search: rxMethod<LoginBodyInterface>(
+    login: rxMethod<LoginBodyInterface>(
       pipe(
         tap(() => patchState(store, { loading: true })),
         switchMap((body: LoginBodyInterface) =>
