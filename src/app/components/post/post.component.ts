@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { AvatarComponent } from '../avatar/avatar.component';
 import { PostInputInterface } from './post-input.interface';
@@ -9,7 +9,7 @@ import { PostInputInterface } from './post-input.interface';
   imports: [AvatarComponent],
   templateUrl: './post.component.html',
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
   @Input() post: PostInputInterface;
 
   timeSinceCreated: string;
