@@ -1,4 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+
+/* Estilo del contenedor de toasts */
+.toast-container.toast-top-center {
+  top: 12px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+/* Estilo general de los toasts */
+.toast {
+  background-color: #fff !important; /* fondo blanco */
+  border-radius: 16px !important; /* bordes redondeados */
+  padding: 16px !important; /* padding generoso */
+  /* max-width: none !important; ancho flexible según el contenido */
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1) !important; /* sombra suave */
+  max-width: 600px !important; /* ancho máximo */
+  width: auto !important; /* asegura que el ancho no sea 100% */
+  margin-right: 8px !important;
+  margin-left: 8px !important;
+}
+
+/* Estilo del texto dentro del toast */
+.toast-message {
+  color: #1DA1F2 !important; /* color de texto azul de Twitter */
+  font-weight: 400; /* peso de la fuente normal */
+}
+
+/* Estilo del botón de cerrar (si se utiliza) */
+.toast-close-button {
+  color: #1DA1F2 !important; /* color de texto azul de Twitter */
+}
+
+/* Estilo de la barra de progreso (si se utiliza) */
+.toast-progress {
+  background-color: #1DA1F2 !important; /* barra de progreso azul */
+}
+
+/* Definición de la clase custom-toast */
+.custom-toast {
+  background-color: #fff !important; /* fondo blanco */
+  border-radius: 16px !important; /* bordes redondeados */
+  padding: 16px !important; /* padding generoso */
+  /* max-width: none !important; ancho flexible según el contenido */
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1) !important; /* sombra suave */
+  max-width: 600px !important; /* ancho máximo */
+  width: auto !important; /* asegura que el ancho no sea 100% */
+  margin-right: 8px !important;
+  margin-left: 8px !important;
+}
+
+/* Estilo del icono personalizado en el toast */
+.custom-toast-icon {
+  color: #1DA1F2; /* Color azul de Twitter */
+  padding-right: 8px; /* Espacio entre el icono y el texto */
+}
+
+@media (min-width: 600px) { /* Ajusta este valor según tu caso */
+  .toast-container.toast-top-center {
+    left: 50%;
+    transform: translateX(-50%) !important;
+  }
+}
