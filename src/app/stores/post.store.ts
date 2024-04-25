@@ -8,6 +8,7 @@ import { PostResponseInterface } from '@/interfaces/post-response.interface';
 import { PostService } from '@/services/post.service';
 import { PageInterface } from '@/interfaces/page.interface';
 import { PostInputInterface } from '@/components/post/post-input.interface';
+import { SearchPostQueryParamsInterface } from '@/interfaces/search-post-query-params.interface';
 
 interface PostState {
   postList: PostInputInterface[];
@@ -25,11 +26,11 @@ export const PostStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withMethods((store, postService = inject(PostService)) => ({
-    search: rxMethod<void>(
+    search: rxMethod<SearchPostQueryParamsInterface>(
       pipe(
         tap(() => patchState(store, { loading: true })),
-        switchMap(() =>
-          postService.search().pipe(
+        switchMap((querParams: SearchPostQueryParamsInterface) =>
+          postService.search(querParams).pipe(
             tapResponse({
               next: (response: PageInterface<PostResponseInterface>) =>
                 patchState(store, {

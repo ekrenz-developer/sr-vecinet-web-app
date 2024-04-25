@@ -12,6 +12,7 @@ import { CreatePostComponent } from '@/components/create-post/create-post.compon
 import { LoaderComponent } from '@/components/loader/loader.component';
 import { PostSkeletonComponent } from '@/components/post-skeleton/post-skeleton.component';
 import { PostStore } from '@/stores/post.store';
+import { SearchPostQueryParamsInterface } from '@/interfaces/search-post-query-params.interface';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,11 @@ export class HomeComponent implements OnInit {
   showCreatePost: boolean = false;
 
   ngOnInit(): void {
-    this.postStore.search();
+    const queryParams: SearchPostQueryParamsInterface = {
+      latitude: -34.6037389,
+      longitude: -58.3815704,
+    };
+    this.postStore.search(queryParams);
   }
 
   toggleCreatePost() {
