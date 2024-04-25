@@ -1,3 +1,31 @@
 <app-header />
-<app-post-form />
-<app-post />
+<!-- @if (postStore.loading() && postStore.postList().length > 0) {
+  <app-loader></app-loader>
+} -->
+<!-- <app-loader></app-loader> -->
+@if (postStore.loading() && postStore.postList().length === 0) {
+  <app-post-skeleton></app-post-skeleton>
+  <app-post-skeleton></app-post-skeleton>
+  <app-post-skeleton></app-post-skeleton>
+  <app-post-skeleton></app-post-skeleton>
+  <app-post-skeleton></app-post-skeleton>
+  <app-post-skeleton></app-post-skeleton>
+  <app-post-skeleton></app-post-skeleton>
+  <app-post-skeleton></app-post-skeleton>
+  <app-post-skeleton></app-post-skeleton>
+} @else {
+  @for (post of postStore.postList(); track post.id) {
+    <app-post [post]="post"></app-post>
+  }
+}
+<div class="fixed bottom-4 right-4 z-10">
+  <app-fab-button
+    [loading]="postStore.loading() && postStore.postList().length === 0"
+    (toggleClick)="toggleCreatePost()"
+  ></app-fab-button>
+</div>
+<app-create-post
+  (togglePost)="togglePost()"
+  (toggleCancel)="toggleCancelPost()"
+  [showCreatePost]="showCreatePost"
+></app-create-post>

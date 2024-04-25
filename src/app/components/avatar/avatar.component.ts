@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-avatar',
@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './avatar.component.html',
 })
 export class AvatarComponent {
+  @Input() username: string = '';
 
+  get initial(): string {
+    return this.username.charAt(0).toUpperCase();
+  }
 }
