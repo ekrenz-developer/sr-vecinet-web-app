@@ -13,8 +13,6 @@ import { CreatePostBodyInterface } from '@/interfaces/create-post-body.interface
 })
 export class PostService {
   private readonly baseUrl = environment.vecinetServiceBaseUrl;
-  private readonly accessToken =
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYWJpaWNhdGEiLCJpYXQiOjE3MTQwNDA1MzEsImV4cCI6MTcxNDA0NDEzMX0.5yGFp5qvYJZZN0r9V2sfVP96e88X1N3WNAogFvnqmMs';
 
   constructor(private http: HttpClient) {}
 
@@ -24,7 +22,6 @@ export class PostService {
     return this.http.get<PageInterface<PostResponseInterface>>(
       `${this.baseUrl}/api/ms-vecinet-post/posts/search`,
       {
-        headers: { Authorization: `Bearer ${this.accessToken}` },
         params: { ...queryParams },
       },
     );
@@ -34,9 +31,6 @@ export class PostService {
     return this.http.post<PostResponseInterface>(
       `${this.baseUrl}/api/ms-vecinet-post/posts`,
       body,
-      {
-        headers: { Authorization: `Bearer ${this.accessToken}` },
-      },
     );
   }
 }

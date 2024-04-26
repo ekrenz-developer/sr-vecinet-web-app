@@ -5,6 +5,7 @@ import {
   inject,
 } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 import { HeaderComponent } from '@/components/header/header.component';
 import { PostComponent } from '@/components/post/post.component';
@@ -15,6 +16,7 @@ import { PostSkeletonComponent } from '@/components/post-skeleton/post-skeleton.
 import { PostStore } from '@/stores/post.store';
 import { SearchPostQueryParamsInterface } from '@/interfaces/search-post-query-params.interface';
 import { CreatePostBodyInterface } from '@/interfaces/create-post-body.interface';
+import { AuthStore } from '@/stores/auth.store';
 
 @Component({
   selector: 'app-home',
@@ -32,10 +34,11 @@ import { CreatePostBodyInterface } from '@/interfaces/create-post-body.interface
 })
 export class HomeComponent implements OnInit {
   postStore = inject(PostStore);
+  authStore = inject(AuthStore);
+  router = inject(Router);
+  toastrService = inject(ToastrService);
 
   showCreatePost: boolean = false;
-
-  constructor(private toastrService: ToastrService) {}
 
   ngOnInit(): void {
     const queryParams: SearchPostQueryParamsInterface = {
@@ -46,6 +49,15 @@ export class HomeComponent implements OnInit {
   }
 
   toggleCreatePost() {
+    if (!this.authStore.username()) {
+      this.toastrService.info('Your session has expired', undefined, {
+        timeOut: 3000,
+        enableHtml: true,
+        toastClass: 'ngx-toastr custom-toast',
+      });
+      this.router.navigate(['/']);
+      return;
+    }
     this.showCreatePost = true;
   }
 
@@ -58,7 +70,7 @@ export class HomeComponent implements OnInit {
       latitude: -34.6037389,
       longitude: -58.3815704,
       content,
-      username: 'elpapu',
+      username: this.authStore.username() ?? '',
     };
     this.postStore.create(body);
     this.toastrService.info(
