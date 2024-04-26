@@ -21,12 +21,13 @@ import { Router } from '@angular/router';
 export class LoginComponent implements AfterViewInit {
   authStore = inject(AuthStore);
   router = inject(Router);
+  toastrService = inject(ToastrService);
 
   username = '';
   @ViewChild('input')
   input!: ElementRef<HTMLInputElement>;
 
-  constructor(private toastrService: ToastrService) {
+  constructor() {
     effect(() => {
       if (this.authStore.accessToken()) {
         this.router.navigate(['/home']);

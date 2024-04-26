@@ -1,11 +1,15 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthStore } from '../stores/auth.store';
-import { catchError, throwError } from 'rxjs';
+import { AuthService } from '@/services/auth.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authStore = inject(AuthStore);
+  const authService = inject(AuthService);
+  const toastrService = inject(ToastrService);
 
   const accessToken = authStore.accessToken();
   const clonedReq = req.clone({
@@ -16,19 +20,18 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(clonedReq).pipe(
     catchError((err) => {
-      if (err instanceof HttpErrorResponse) {
-        // Handle HTTP errors
-        if (err.status === 401) {
-          // Specific handling for unauthorized error
-          console.error('Unauthorized request:', err);
-          // You might trigger a re-authentication flow or redirect the user here
-        } else {
-          // Handle other HTTP error codes
-          console.error('HTTP error:', err);
-        }
+      if (err instanceof HttpErrorResponse && err.status === 401) {
+        authService.logout('Your session was expired');
       } else {
-        // Handle non-HTTP errors
-        console.error('An error occurred:', err);
+        toastrService.error(
+          '<span class="custom-toast-icon">x</span> Oops, something went wrong.',
+          undefined,
+          {
+            timeOut: 3000,
+            enableHtml: true,
+            toastClass: 'ngx-toastr custom-toast',
+          },
+        );
       }
 
       // Re-throw the error to propagate it further
