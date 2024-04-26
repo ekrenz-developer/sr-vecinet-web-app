@@ -7,6 +7,7 @@ import {
   inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 import { AuthStore } from '@/stores/auth.store';
 import { Router } from '@angular/router';
@@ -25,12 +26,20 @@ export class LoginComponent implements AfterViewInit {
   @ViewChild('input')
   input!: ElementRef<HTMLInputElement>;
 
-  constructor() {
+  constructor(private toastrService: ToastrService) {
     effect(() => {
       if (this.authStore.accessToken()) {
         this.router.navigate(['/home']);
       } else if (this.authStore.error()) {
-        console.log('ERROR');
+        this.toastrService.error(
+          '<span class="custom-toast-icon">x</span> Oops, something went wrong.',
+          undefined,
+          {
+            timeOut: 3000,
+            enableHtml: true,
+            toastClass: 'ngx-toastr custom-toast',
+          },
+        );
       }
     });
   }
