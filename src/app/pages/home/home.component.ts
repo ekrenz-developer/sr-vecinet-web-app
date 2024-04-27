@@ -71,15 +71,15 @@ export class HomeComponent implements OnInit {
   }
 
   toggleCreatePost() {
-    console.log(
-      this.geolocationStore.latitude(),
-      this.geolocationStore.longitude(),
-    );
-    // if (!this.authStore.username()) {
-    //   this.authService.logout('Your session was expired');
-    //   return;
-    // }
-    // this.showCreatePost = true;
+    // console.log(
+    //   this.geolocationStore.latitude(),
+    //   this.geolocationStore.longitude(),
+    // );
+    if (!this.authStore.username()) {
+      this.authService.logout('Your session was expired');
+      return;
+    }
+    this.showCreatePost = true;
   }
 
   toggleCancelPost() {
