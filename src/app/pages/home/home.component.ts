@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
   constructor() {
     effect(() => {
       if (this.geolocationStore.error()) {
-        console.log(this.geolocationStore.error());
         this.toastrService.info('We need to know your location', undefined, {
           timeOut: 3000,
           enableHtml: true,
@@ -62,7 +61,6 @@ export class HomeComponent implements OnInit {
           latitude: this.geolocationStore.latitude() as number,
           longitude: this.geolocationStore.longitude() as number,
         };
-        console.log('ACA BUSQUEDA', queryParams);
         this.postStore.search(queryParams);
       }
     });
