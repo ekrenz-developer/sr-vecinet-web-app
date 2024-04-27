@@ -9,9 +9,8 @@ module.exports = {
   },
   plugins: [
     new EnvironmentPlugin([
-      'VECINET_SERVICE_BASE_URL',
-      'GEOLOCATION_SERVICE_BASE_URL',
-      'GEOLOCATION_SERVICE_API_KEY',
+      'VECINET_AUTH_SERVICE_BASE_URL',
+      'VECINET_POST_SERVICE_BASE_URL',
     ]),
   ],
 };

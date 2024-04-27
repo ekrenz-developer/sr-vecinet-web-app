@@ -12,7 +12,7 @@ import { CreatePostBodyInterface } from '@/interfaces/create-post-body.interface
   providedIn: 'root',
 })
 export class PostService {
-  private readonly baseUrl = environment.vecinetServiceBaseUrl;
+  private readonly baseUrl = environment.vecinetPostServiceBaseUrl;
 
   constructor(private http: HttpClient) {}
 

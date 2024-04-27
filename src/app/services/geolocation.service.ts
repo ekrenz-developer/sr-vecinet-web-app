@@ -9,8 +9,7 @@ import { environment } from '@env/environment';
   providedIn: 'root',
 })
 export class GeolocationService {
-  private readonly baseUrl = environment.geolocationServiceBaseUrl;
-  private readonly apiKey = environment.geolocationServiceApiKey;
+  private readonly baseUrl = environment.vecinetAuthServiceBaseUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -40,10 +39,8 @@ export class GeolocationService {
   // }
 
   getCurrentPosition(): Observable<GeolocationResponseInterface> {
-    return this.http.get<GeolocationResponseInterface>(`${this.baseUrl}`, {
-      params: {
-        apiKey: `${this.apiKey}`,
-      },
-    });
+    return this.http.get<GeolocationResponseInterface>(
+      `${this.baseUrl}/api/ms-vecinet-auth/location`,
+    );
   }
 }
