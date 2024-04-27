@@ -12,7 +12,7 @@ import { LoginBodyInterface } from '@/interfaces/login-body.interface';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly baseUrl = environment.vecinetServiceBaseUrl;
+  private readonly baseUrl = environment.vecinetAuthServiceBaseUrl;
 
   constructor(
     private http: HttpClient,
