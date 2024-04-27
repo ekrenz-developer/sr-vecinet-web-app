@@ -13,7 +13,7 @@ export class GeolocationService {
         const options: PositionOptions = {
           timeout: 10000,
           // maximumAge: 60000,
-          enableHighAccuracy: true,
+          // enableHighAccuracy: true,
         };
         navigator.geolocation.getCurrentPosition(
           (position) => {
