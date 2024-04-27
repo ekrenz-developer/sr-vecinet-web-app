@@ -48,13 +48,7 @@ export class HomeComponent implements OnInit {
   constructor() {
     effect(
       () => {
-        if (this.geolocationStore.error()) {
-          this.toastrService.info('We need to know your location', undefined, {
-            timeOut: 3000,
-            enableHtml: true,
-            toastClass: 'ngx-toastr custom-toast',
-          });
-        } else if (
+        if (
           this.geolocationStore.latitude() &&
           this.geolocationStore.longitude()
         ) {

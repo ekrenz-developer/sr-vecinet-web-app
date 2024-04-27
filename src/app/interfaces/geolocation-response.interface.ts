@@ -1,4 +1,4 @@
 export interface GeolocationResponseInterface {
-  lat: number;
-  lon: number;
+  latitude: number;
+  longitude: number;
 }
