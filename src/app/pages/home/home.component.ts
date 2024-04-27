@@ -46,24 +46,23 @@ export class HomeComponent implements OnInit {
   showCreatePost: boolean = false;
 
   constructor() {
-    effect(() => {
-      if (this.geolocationStore.error()) {
-        this.toastrService.info('We need to know your location', undefined, {
-          timeOut: 3000,
-          enableHtml: true,
-          toastClass: 'ngx-toastr custom-toast',
-        });
-      } else if (
-        this.geolocationStore.latitude() &&
-        this.geolocationStore.longitude()
-      ) {
-        const queryParams: SearchPostQueryParamsInterface = {
-          latitude: this.geolocationStore.latitude() as number,
-          longitude: this.geolocationStore.longitude() as number,
-        };
-        this.postStore.search(queryParams);
-      }
-    });
+    effect(
+      () => {
+        if (this.geolocationStore.error()) {
+          this.toastrService.info('We need to know your location', undefined, {
+            timeOut: 3000,
+            enableHtml: true,
+            toastClass: 'ngx-toastr custom-toast',
+          });
+        } else if (
+          this.geolocationStore.latitude() &&
+          this.geolocationStore.longitude()
+        ) {
+          this.searchPosts();
+        }
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   ngOnInit(): void {
@@ -71,10 +70,6 @@ export class HomeComponent implements OnInit {
   }
 
   toggleCreatePost() {
-    // console.log(
-    //   this.geolocationStore.latitude(),
-    //   this.geolocationStore.longitude(),
-    // );
     if (!this.authStore.username()) {
       this.authService.logout('Your session was expired');
       return;
@@ -88,8 +83,8 @@ export class HomeComponent implements OnInit {
 
   togglePost(content: string) {
     const body: CreatePostBodyInterface = {
-      latitude: -34.6037389,
-      longitude: -58.3815704,
+      latitude: this.geolocationStore.latitude() ?? 0,
+      longitude: this.geolocationStore.longitude() ?? 0,
       content,
       username: this.authStore.username() ?? '',
     };
@@ -104,5 +99,21 @@ export class HomeComponent implements OnInit {
       },
     );
     this.showCreatePost = false;
+  }
+
+  onScroll(event: Event) {
+    const target = event.target as HTMLElement;
+    const scrollTop = target.scrollTop;
+    if (scrollTop === 0 && !this.postStore.loading()) {
+      this.searchPosts();
+    }
+  }
+
+  searchPosts() {
+    const queryParams: SearchPostQueryParamsInterface = {
+      latitude: this.geolocationStore.latitude() ?? 0,
+      longitude: this.geolocationStore.longitude() ?? 0,
+    };
+    this.postStore.search(queryParams);
   }
 }
