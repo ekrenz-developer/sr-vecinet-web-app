@@ -33,8 +33,8 @@ export const GeolocationStore = signalStore(
             tapResponse({
               next: (response: GeolocationResponseInterface) =>
                 patchState(store, {
-                  latitude: response.lat,
-                  longitude: response.lon,
+                  latitude: response.latitude,
+                  longitude: response.longitude,
                 }),
               error: (error: string) => patchState(store, { error }),
               finalize: () => patchState(store, { loading: false }),
